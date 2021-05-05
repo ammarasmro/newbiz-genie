@@ -23,6 +23,8 @@ attrs==20.3.0
     #   -c requirements/prod.txt
     #   jsonschema
     #   pytest
+autopep8==1.5.6
+    # via -r requirements/dev.in
 babel==2.9.0
     # via jupyterlab-server
 backcall==0.2.0
@@ -270,8 +272,10 @@ ptyprocess==0.7.0
     #   terminado
 py==1.10.0
     # via pytest
-pycodestyle==2.6.0
-    # via -r requirements/dev.in
+pycodestyle==2.7.0
+    # via
+    #   -r requirements/dev.in
+    #   autopep8
 pycparser==2.20
     # via
     #   -c requirements/prod.txt
@@ -369,6 +373,7 @@ testpath==0.4.4
 toml==0.10.2
     # via
     #   -c requirements/prod.txt
+    #   autopep8
     #   black
     #   dparse
     #   pylint
