@@ -19,6 +19,11 @@ Generate the business name
 - Look on Kaggle for datasets of text that might contain business names + descriptions
 - Crawl the web to get business names and descriptions for websites
 - Find a place with business registrations and get business names and descriptions
+
+#### [Update 1]
+- Downloaded data from [Kaggle](https://www.kaggle.com/peopledatalabssf/free-7-million-company-dataset) to get business names
+- Wrote script to query Wikipedia for business descriptions
+
 ## Exploration
 Explore the distribution of words. Check if business names are usually included in the descriptions. Check length of words and length of descriptions to make decisions on network.
 ## Modeling
