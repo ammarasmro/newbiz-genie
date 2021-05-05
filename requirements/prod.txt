@@ -26,6 +26,8 @@ backcall==0.2.0
     # via ipython
 base58==2.1.0
     # via streamlit
+beautifulsoup4==4.9.3
+    # via wikipedia
 bleach==3.3.0
     # via nbconvert
 blinker==1.4
@@ -288,6 +290,7 @@ requests==2.25.1
     #   spacy
     #   streamlit
     #   tensorboard
+    #   wikipedia
 rsa==4.7
     # via google-auth
 send2trash==1.5.0
@@ -308,6 +311,8 @@ smart-open==3.0.0
     # via pathy
 smmap==4.0.0
     # via gitdb
+soupsieve==2.2.1
+    # via beautifulsoup4
 spacy-legacy==3.0.5
     # via spacy
 spacy==3.0.6
@@ -397,6 +402,8 @@ wheel==0.36.2
     # via tensorboard
 widgetsnbextension==3.5.1
     # via ipywidgets
+wikipedia==1.4.0
+    # via -r requirements/prod.in
 yarl==1.6.3
     # via aiohttp
 
