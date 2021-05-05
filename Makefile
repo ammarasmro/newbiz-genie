@@ -21,3 +21,6 @@ train-mnist-cnn-ddp:
 # Lint
 lint:
 	tasks/lint.sh
+
+run-web-app:
+	streamlit run app/run.py
