@@ -1,4 +1,4 @@
-import spacy
+from pathlib import Path
 import streamlit as st
 import torch
 from name_generator.models.encoder_decoder_model import EncoderDecoderModel
@@ -12,20 +12,29 @@ st.write('Please describe your business')
 description = st.text_input(label='Description')
 st.write(description)
 
+
+models_path = Path('./data/output/models')
+model_list = list(models_path.iterdir())
+
+
 model_options = [
     '-ly model',
     'seq-to-char model'
 ]
 
 model_name = st.selectbox(
-    label='Select model',
+    label='Select model type',
     options=model_options)
 
 if model_name == model_options[0]:
     model = LyModel()
     nlp = spacy.load("en_core_web_sm")
 elif model_name == model_options[1]:
-    model = EncoderDecoderModel()
+    model_path = st.selectbox(
+        label='Select model version',
+        options=model_list,
+        format_func=lambda x: x.name)
+    model = EncoderDecoderModel(model_path)
 
 if st.button('button'):
     if model_name == model_options[0]:

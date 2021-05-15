@@ -14,9 +14,6 @@ MAX_LENGTH = 21
 SOS_token = 0
 EOS_token = 1
 
-encoder = torch.load('./data/output/encoder.pth')
-decoder = torch.load('./data/output/decoder.pth')
-
 
 teacher_forcing_ratio = 0.5
 
@@ -111,10 +108,6 @@ def evaluate(encoder, decoder, sentence, input_lang, char_lang, max_length=MAX_L
         return decoded_words, decoder_attentions[:di + 1]
 
 
-print(encoder)
-print(decoder)
-
-
 def generate_name(encoder, decoder, description, input_lang, char_lang):
     output_words, attentions = evaluate(
         encoder, decoder, description, input_lang, char_lang)
@@ -122,18 +115,20 @@ def generate_name(encoder, decoder, description, input_lang, char_lang):
     return output_sentence
 
 
-with open('./data/output/input_lang.pkl', 'rb') as f:
-    input_lang = pickle.load(f)
-
-
-with open('./data/output/char_lang.pkl', 'rb') as f:
-    char_lang = pickle.load(f)
-
-
 class EncoderDecoderModel(Model):
+
+    def __init__(self, model_path):
+        self.encoder = torch.load(model_path / 'encoder.pth')
+        self.decoder = torch.load(model_path / 'decoder.pth')
+
+        with open(model_path / 'input_lang.pkl', 'rb') as f:
+            self.input_lang = pickle.load(f)
+
+        with open(model_path / 'char_lang.pkl', 'rb') as f:
+            self.char_lang = pickle.load(f)
 
     def fit(self, data):
         pass
 
     def predict(self, data):
-        return generate_name(encoder, decoder, data, input_lang, char_lang)
+        return generate_name(self.encoder, self.decoder, data, self.input_lang, self.char_lang)
