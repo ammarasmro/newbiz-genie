@@ -121,7 +121,7 @@ def save_model_package(output_directory_path, encoder, decoder, input_lang, char
 
 
 def run(input_path, output_path):
-    df = pd.read_csv(input_path / 'dataset.csv', index_col=0).iloc[:1000]
+    df = pd.read_csv(input_path / 'dataset.csv', index_col=0)
     df.name = df.name.apply(normalizeString)
     df.description = df.description.apply(normalizeString)
     df['name_short'] = df.name.apply(lambda x: ' '.join(x.split(' ')[:3]))
@@ -135,8 +135,8 @@ def run(input_path, output_path):
     attn_decoder1 = AttnDecoderRNN(
         hidden_size=hidden_size, output_size=char_lang.n_chars, dropout_p=0.1).to(device)
 
-    trainIters(encoder1, attn_decoder1, 100, pairs,
-               input_lang, char_lang, print_every=100)
+    trainIters(encoder1, attn_decoder1, 100000, pairs,
+               input_lang, char_lang, print_every=1000)
     print('END OF TRAINING')
     evaluateRandomly(encoder1, attn_decoder1, pairs,
                      input_lang, char_lang, n=2)
