@@ -1,9 +1,20 @@
+import logging
 from pathlib import Path
 import streamlit as st
 import torch
 from name_generator.models.encoder_decoder_model import EncoderDecoderModel
 from name_generator.models.ly_model import LyModel
-from name_generator.models.nn_models import AttnDecoderRNN, EncoderRNN
+
+
+@st.cache
+def get_logger_streamlit():
+    file_handler = logging.FileHandler(filename='./data/feedback.log')
+    logger = logging.getLogger()
+    logger.addHandler(file_handler)
+    return logger
+
+
+logger = get_logger_streamlit()
 
 st.title('Business Namer')
 
@@ -42,4 +53,14 @@ if st.button('button'):
         for chunk in doc.noun_chunks:
             st.write(model.predict(chunk.lemma_.split(' ')[0]).title())
     elif model_name == model_options[1]:
-        st.write(model.predict(description))
+        prediction = model.predict(description)
+        st.write(prediction)
+        logger.info(f'Description: {description}')
+        logger.info(f'Prediction: {prediction}')
+
+
+if st.button('Like'):
+    logger.info('Feedback: Like')
+
+if st.button('DisLike'):
+    logger.info('Feedback: DisLike')
