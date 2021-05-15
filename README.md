@@ -38,6 +38,12 @@ to query wikipedia
 make query-descriptions
 ```
 
+Instead of waiting for the downloader to complete, you can build an interm dataset from the existing descriptions and train with them
+
+```bash
+make build-dataset
+```
+
 ## Exploration
 Explore the distribution of words. Check if business names are usually included in the descriptions. Check length of words and length of descriptions to make decisions on network.
 ## Modeling

@@ -26,3 +26,6 @@ download-raw-dataset:
 
 query-descriptions:
 	python name_generator/data/enhancer_script.py
+
+build-dataset:
+	python name_generator/data/build_dataset.py

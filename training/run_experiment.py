@@ -150,7 +150,7 @@ def run(input_path, output_path):
 
 
 if __name__ == '__main__':
-    input_path = Path('./data')
+    input_path = Path('./data/dataset')
     output_path = Path('./data/output/models')
     output_path.mkdir(parents=True, exist_ok=True)
     run(input_path, output_path)
