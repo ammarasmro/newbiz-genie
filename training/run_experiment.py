@@ -1,12 +1,9 @@
 from __future__ import division, print_function, unicode_literals
 
-import math
 import pickle
 import random
-import re
-import string
 import time
-import unicodedata
+from datetime import datetime
 from io import open
 from pathlib import Path
 
@@ -109,6 +106,19 @@ def evaluateRandomly(encoder, decoder, pairs, input_lang, char_lang, n=10):
 
 # generate_name(encoder1, attn_decoder1, 'elevate human potential with ai')
 
+def save_model_package(output_directory_path, encoder, decoder, input_lang, char_lang):
+    model_path = output_directory_path / datetime.utcnow().isoformat()
+    model_path.mkdir(parents=True, exist_ok=True)
+
+    torch.save(encoder, model_path / 'encoder.pth')
+    torch.save(decoder, model_path / 'decoder.pth')
+
+    with (model_path / 'input_lang.pkl').open(mode='wb') as f:
+        pickle.dump(input_lang, f)
+
+    with (model_path / 'char_lang.pkl').open(mode='wb') as f:
+        pickle.dump(char_lang, f)
+
 
 def run(input_path, output_path):
     df = pd.read_csv(input_path / 'dataset.csv', index_col=0).iloc[:1000]
@@ -130,19 +140,17 @@ def run(input_path, output_path):
     print('END OF TRAINING')
     evaluateRandomly(encoder1, attn_decoder1, pairs,
                      input_lang, char_lang, n=2)
-
-    torch.save(encoder1, output_path / 'encoder.pth')
-    torch.save(attn_decoder1, output_path / 'decoder.pth')
-
-    with (output_path / 'input_lang.pkl').open(mode='wb') as f:
-        pickle.dump(input_lang, f)
-
-    with (output_path / 'char_lang.pkl').open(mode='wb') as f:
-        pickle.dump(char_lang, f)
+    save_model_package(
+        output_directory_path=output_path,
+        encoder=encoder1,
+        decoder=attn_decoder1,
+        input_lang=input_lang,
+        char_lang=char_lang
+    )
 
 
 if __name__ == '__main__':
     input_path = Path('./data')
-    output_path = Path('./data/output')
+    output_path = Path('./data/output/models')
     output_path.mkdir(parents=True, exist_ok=True)
     run(input_path, output_path)
