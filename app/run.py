@@ -1,7 +1,7 @@
 import logging
 from pathlib import Path
+
 import streamlit as st
-import torch
 from name_generator.models.encoder_decoder_model import EncoderDecoderModel
 from name_generator.models.ly_model import LyModel
 
@@ -39,7 +39,6 @@ model_name = st.selectbox(
 
 if model_name == model_options[0]:
     model = LyModel()
-    nlp = spacy.load("en_core_web_sm")
 elif model_name == model_options[1]:
     model_path = st.selectbox(
         label='Select model version',
@@ -47,20 +46,14 @@ elif model_name == model_options[1]:
         format_func=lambda x: x.name)
     model = EncoderDecoderModel(model_path)
 
-if st.button('button'):
-    if model_name == model_options[0]:
-        doc = nlp(description)
-        for chunk in doc.noun_chunks:
-            st.write(model.predict(chunk.lemma_.split(' ')[0]).title())
-    elif model_name == model_options[1]:
-        prediction = model.predict(description)
-        st.write(prediction)
-        logger.info(f'Description: {description}')
-        logger.info(f'Prediction: {prediction}')
+if st.button('Generate name'):
+    prediction = model.predict(description)
+    st.write(prediction)
+    logger.info(f'Description: {description}')
+    logger.info(f'Prediction: {prediction}')
 
+    if st.button('Like'):
+        logger.info('Feedback: Like')
 
-if st.button('Like'):
-    logger.info('Feedback: Like')
-
-if st.button('DisLike'):
-    logger.info('Feedback: DisLike')
+    if st.button('DisLike'):
+        logger.info('Feedback: DisLike')
