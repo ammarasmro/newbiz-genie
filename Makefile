@@ -15,13 +15,8 @@ pip-tools:
 	python -m spacy download en_core_web_sm
 	conda install pytorch torchvision torchaudio cudatoolkit=11.1 -c pytorch-nightly -c nvidia
 
-# Example training command
-train-mnist-cnn-ddp:
-	python training/run_experiment.py --max_epochs=10 --gpus='-1' --accelerator=ddp --num_workers=20 --data_class=MNIST --model_class=CNN
-
-# Lint
-lint:
-	tasks/lint.sh
+train-seq2seq:
+	python training/run_experiment.py
 
 run-web-app:
 	streamlit run app/run.py

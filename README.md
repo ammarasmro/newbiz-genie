@@ -35,6 +35,13 @@ make download-raw-dataset
 Explore the distribution of words. Check if business names are usually included in the descriptions. Check length of words and length of descriptions to make decisions on network.
 ## Modeling
 This project seems perfect for an encoder-decoder architecture. I want to implement the easiest solution for modeling possible to go ahead and start building the product. As a next step I could replace some parts such as encoding with the newly trained neo-GPT.
+
+To run an experiment that trains a new model and saves it, run
+
+```bash
+make train-seq2seq
+```
+
 ## Stack
 ### Vision
 A web app that lets a user enter business descriptions, and output the generated business name
