@@ -17,3 +17,4 @@ safety
 scipy
 pillow
 autopep8
+flake8

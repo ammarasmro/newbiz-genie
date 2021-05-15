@@ -77,6 +77,8 @@ entrypoints==0.3
     # via
     #   -c requirements/prod.txt
     #   nbconvert
+flake8==3.9.2
+    # via -r requirements/dev.in
 gitdb==4.0.7
     # via
     #   -c requirements/prod.txt
@@ -175,7 +177,9 @@ matplotlib==3.3.3
     #   -r requirements/dev.in
     #   itermplot
 mccabe==0.6.1
-    # via pylint
+    # via
+    #   flake8
+    #   pylint
 mistune==0.8.4
     # via
     #   -c requirements/prod.txt
@@ -276,12 +280,15 @@ pycodestyle==2.7.0
     # via
     #   -r requirements/dev.in
     #   autopep8
+    #   flake8
 pycparser==2.20
     # via
     #   -c requirements/prod.txt
     #   cffi
 pydocstyle==5.1.1
     # via -r requirements/dev.in
+pyflakes==2.3.1
+    # via flake8
 pygments==2.8.1
     # via
     #   -c requirements/prod.txt
