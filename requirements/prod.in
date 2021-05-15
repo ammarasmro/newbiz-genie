@@ -8,7 +8,6 @@ pytorch-lightning
 requests
 toml
 torch
-torchvision
 tqdm
 streamlit
 spacy
