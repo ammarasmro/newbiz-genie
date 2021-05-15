@@ -31,6 +31,13 @@ To download the dataset from Kaggle:
 make download-raw-dataset
 ```
 
+Once that data is downloaded, you'll need to query wikipedia for descriptions. This script takes days to run. Future work can use other ways
+to query wikipedia
+
+```bash
+make query-descriptions
+```
+
 ## Exploration
 Explore the distribution of words. Check if business names are usually included in the descriptions. Check length of words and length of descriptions to make decisions on network.
 ## Modeling

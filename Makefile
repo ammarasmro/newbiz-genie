@@ -23,3 +23,6 @@ run-web-app:
 
 download-raw-dataset:
 	kaggle datasets download -d peopledatalabssf/free-7-million-company-dataset -p data/kaggle_dataset --unzip
+
+query-descriptions:
+	python name_generator/data/enhancer_script.py
