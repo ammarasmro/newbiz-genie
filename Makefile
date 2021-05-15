@@ -13,6 +13,7 @@ pip-tools:
 	pip-compile requirements/prod.in && pip-compile requirements/dev.in
 	pip-sync requirements/prod.txt requirements/dev.txt
 	python -m spacy download en_core_web_sm
+	conda install pytorch torchvision torchaudio cudatoolkit=11.1 -c pytorch-nightly -c nvidia
 
 # Example training command
 train-mnist-cnn-ddp:
