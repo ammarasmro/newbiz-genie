@@ -2,6 +2,7 @@ name: business-namer
 channels:
   - defaults
   - nvidia
+  - conda-forge
 dependencies:
   - python=3.8.5  # Google Colab is still on Python 3.6
   - cudatoolkit=11.1

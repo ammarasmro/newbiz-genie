@@ -25,3 +25,6 @@ lint:
 
 run-web-app:
 	streamlit run app/run.py
+
+download-raw-dataset:
+	kaggle datasets download -d peopledatalabssf/free-7-million-company-dataset -p data/kaggle_dataset --unzip

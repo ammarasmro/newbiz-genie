@@ -24,6 +24,13 @@ Generate the business name
 - Downloaded data from [Kaggle](https://www.kaggle.com/peopledatalabssf/free-7-million-company-dataset) to get business names
 - Wrote script to query Wikipedia for business descriptions
 
+To download the dataset from Kaggle:
+- First, download your kaggle token from your account settings
+- Second, run this
+```bash
+make download-raw-dataset
+```
+
 ## Exploration
 Explore the distribution of words. Check if business names are usually included in the descriptions. Check length of words and length of descriptions to make decisions on network.
 ## Modeling
