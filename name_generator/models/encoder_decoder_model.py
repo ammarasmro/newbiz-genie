@@ -1,14 +1,10 @@
 import pickle
 import random
-import string
 
 import torch
-import torch.nn as nn
-import torch.nn.functional as F
-from name_generator.data.utils import CharLang, Lang, indexesFromSentence, tensorFromSentence
+from name_generator.data.utils import CharLang, Lang, tensorFromSentence
 from name_generator.models.model import Model
 from name_generator.models.nn_models import AttnDecoderRNN, EncoderRNN
-from torch import optim
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(device)
